@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GetСar – Покупка авто из Японии, Кореи и Китая</title>
+  <style>
+    /* Содержимое style.css */
+    body {
+      margin: 0;
+      font-family: 'Montserrat', Arial, sans-serif;
+      background: linear-gradient(120deg, #181e26 0%, #232b36 100%);
+      color: #e6e6e6;
+      overflow-x: hidden;
+    }
+    /* ... (весь остальной CSS содержимый из style.css) ... */
+    @keyframes shake {
+        0%, 100% { transform: translateX(0); }
+        25% { transform: translateX(5px); }
+        75% { transform: translateX(-5px); }
+    }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <nav>
+      <div class="logo">GetCar</div>
+      <div class="hamburger" onclick="this.classList.toggle('active'); document.querySelector('nav').classList.toggle('active')">
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+      </div>
+      <ul>
+        <li><a href="#steps">Как это работает</a></li>
+        <li><a href="#cars">Автомобили</a></li>
+        <li><a href="#why">Связь с нами</a></li>
+        <li><a href="#contact">Заявка</a></li>
+      </ul>
+    </nav>
+    <div class="hero-content">
+      <h1>Премиум-подбор авто<br>из Японии и Китая</h1>
+      <p>Быстрая доставка. Прозрачные условия. Гарантия сохранности. Полное сопровождение. Оформите заявку – и мы подберём идеальный автомобиль для вас!</p>
+      <a href="#contact" class="btn">Оставить заявку</a>
+    </div>
+    <div class="overlay"></div>
+  </header>
+
+  <section id="steps" class="steps">
+    <h2>Как мы работаем</h2>
+    <div class="steps-list">
+        <!-- Содержимое секции steps -->
+    </div>
+  </section>
+
+  <section id="cars" class="cars">
+    <h2>Примеры автомобилей</h2>
+    <div class="car-list">
+      <!-- Статические данные автомобилей -->
+      <div class="car-card" data-car="Honda1">
+        <img src="static/images/Honda%20CR-V/1.jpg" alt="Honda CR-V">
+        <h3>Honda CR-V</h3>
+        <button class="gallery-hint">Посмотреть фото</button>
+      </div>
+      <div class="car-card" data-car="Toyota1">
+        <img src="static/images/Toyota%20Corolla%20Fielder/1.jpg" alt="Toyota Corolla Fielder">
+        <h3>Toyota Corolla Fielder</h3>
+        <button class="gallery-hint">Посмотреть фото</button>
+      </div>
+      <!-- Остальные автомобили -->
+    </div>
+  </section>
+
+  <section id="why" class="features">
+    <!-- Содержимое секции связи -->
+  </section>
+
+  <section id="contact" class="contact">
+    <!-- Форма заявки -->
+  </section>
+
+  <div id="galleryModal" class="modal hidden">
+    <!-- Модальное окно -->
+  </div>
+
+  <script>
+    // Содержимое script.js
+    const carsData = {
+      "Honda1": {
+        "name": "Honda CR-V",
+        "images": ["static/images/Honda%20CR-V/1.jpg", "static/images/Honda%20CR-V/2.jpg"],
+        "prices": {"market": "2 000 000 ₽", "order": "1 850 000 ₽", "full": "1 980 000 ₽"}
+      },
+      // Остальные данные автомобилей
+    };
+
+    // Весь JavaScript код из script.js
+    const galleryModal = document.getElementById('galleryModal');
+    // ... весь остальной JS код ...
+  </script>
+
+  <footer>
+    © 2025 GETCAR. Все права защищены.
+  </footer>
+</body>
+</html>
