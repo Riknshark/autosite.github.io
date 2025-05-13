@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GetСar – Покупка авто из Японии, Кореи и Китая</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <header class="hero">
+    <nav>
+  <div class="logo">GetCar</div>
+  <div class="hamburger" onclick="this.classList.toggle('active'); document.querySelector('nav').classList.toggle('active')">
+    <div class="line"></div>
+    <div class="line"></div>
+    <div class="line"></div>
+  </div>
+  <ul>
+    <li><a href="#steps">Как это работает</a></li>
+    <li><a href="#cars">Автомобили</a></li>
+    <li><a href="#why">Связь с нами</a></li>
+    <li><a href="#contact">Заявка</a></li>
+  </ul>
+</nav>
+    <div class="hero-content">
+      <h1>Премиум-подбор авто<br>из Японии и Китая</h1>
+      <p>Быстрая доставка. Прозрачные условия. Гарантия сохранности. Полное сопровождение. Оформите заявку – и мы подберём идеальный автомобиль для вас!</p>
+      <a href="#contact" class="btn">Оставить заявку</a>
+    </div>
+    <div class="overlay"></div>
+  </header>
+
+  <!--<section class="parallax">
+    <div class="parallax-text">Ощутите новый уровень сервиса</div>
+  </section>-->
+
+  <section id="steps" class="steps">
+    <h2>Как мы работаем</h2>
+    <div class="steps-list">
+        <div class="step"><span>1</span> Заключение юридического договора в котором указываются все характеристики авто и конечный бюджет,далее внесение гарантийного взноса. Это подтверждает ваше право на покупку и серьёзность намерений. </div>
+
+        <div class="step"><span>2</span> Подбор авто по вашему запросу,после согласования преступаем к оплате автомобиля и логистической цепочки до города Владивостока. </div>
+        <div class="step"><span>3</span> После оплаты автомобиля компания «GETCAR» организует его доставку до границы России. Вам остаётся только дождаться прибытия автомобиля. </div>
+        <div class="step"><span>4</span> По прибытии автомобиля на границу России необходимо оплатить таможенную пошлину,утилизационный сбор. </div>
+        <div class="step"><span>5</span> После успешного прохождения всех процедур автомобиль будет полностью готов к выдаче.</div>
+    </div>
+</section>
+
+  <section id="cars" class="cars">
+    <h2>Примеры автомобилей</h2>
+    <div class="car-list">
+      {% for car_id, car in cars_data.items() %}
+      <div class="car-card" data-car="{{ car_id }}">
+        <img src="{{ car.images[0] if car.images else '' }}" alt="{{ car.name }}">
+        <h3>{{ car.name }}</h3>
+        <!--<p>Рыночная стоимость: <span class="price">{{ car.prices.market }}</span></p>
+        <p>Цена под заказ: <span class="price">{{ car.prices.order }}</span></p>
+        <p>Цена под ключ: <span class="price">{{ car.prices.full }}</span></p>-->
+        <button class="gallery-hint">Посмотреть фото</button>
+      </div>
+      {% endfor %}
+    </div>
+  </section>
+
+  <section id="why" class="features">
+    <h2>Связь с нами</h2>
+    <div class="features-list">
+      <div class="feature">
+        <a href="https://t.me/getcar125" target="_blank" class="social-link">
+          <img src="static\images\telegram.png" alt="Telegram" class="social-icon">
+        </a>
+        <h3>Telegram</h3>
+      </div>
+      <div class="feature">
+        <a href="https://www.instagram.com/getcar125?igsh=ZWl2Y2w5OWhyd3V2&utm_source=qr" target="_blank" class="social-link">
+          <img src="static\images\Instagram.png" alt="Instagram" class="social-icon">
+        </a>
+        <h3>Instagram</h3>
+      </div>
+      <div class="feature">
+        <a href="tel:+79149612301" class="social-link">
+          <img src="static\images\tel.png" alt="Телефон" class="social-icon">
+        </a>
+        <h3>Номер телефона</h3>
+        <p>+7 914 961-23-01</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="contact">
+    <h2>Оставить заявку</h2>
+    <form id="orderForm">
+      <label for="car">Марка, модель и год автомобиля:</label>
+      <input type="text" id="car" name="car" list="cars-list" 
+         required placeholder="Например: Honda CR-V">
+      <label for="name">Ваше имя:</label>
+      <input type="text" id="name" name="name" required placeholder="Иван Иванов">
+      <label for="phone">Телефон:</label>
+      <input type="tel" id="phone" name="phone" required 
+             placeholder="+7 (___) ___-__-__"
+             pattern="\+7\s\(\d{3}\)\s\d{3}-\d{2}-\d{2}">
+      <label></label>
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" required placeholder="example@mail.com">
+      <label for="tg">Telegram (опционально):</label>
+      <input type="tg" id="tg" name="tg" required placeholder="@user">
+      <button type="submit" class="btn">Отправить заявку</button>
+    </form>
+    <div id="successMessage" class="hidden">
+      Заявка успешно отправлена! В ближайшее время, с вами свяжется наш сотрудник.
+    </div>
+
+  </section>
+
+  <!-- Модальное окно галереи -->
+  <div id="galleryModal" class="modal hidden">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <img id="galleryImage" src="" alt="Фото авто" loading="lazy">
+      <div class="gallery-controls">
+        <button id="prevPhoto">&lt;</button>
+        <span id="photoCounter"></span>
+        <button id="nextPhoto">&gt;</button>
+      </div>
+    </div>
+  </div>
+
+  <script id="cars-data-json" type="application/json">
+    {{ cars_data|tojson|safe }}
+  </script>
+
+  <footer>
+    © 2025 GETCAR. Все права защищены.
+  </footer>
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
