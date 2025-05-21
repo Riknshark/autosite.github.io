@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>GetСar – Покупка авто из Японии, Кореи и Китая</title>
   <style>
-    /* Содержимое style.css */
+    /* Содержимое вашего style.css будет здесь */
     body {
       margin: 0;
       font-family: 'Montserrat', Arial, sans-serif;
@@ -13,11 +13,663 @@
       color: #e6e6e6;
       overflow-x: hidden;
     }
-    /* ... (весь остальной CSS содержимый из style.css) ... */
+    .hero {
+      min-height: 100vh;
+      background: linear-gradient(120deg, #232b36 70%, #181e26 100%);
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+    }
+    .hero .overlay {
+      position: absolute;
+      inset: 0;
+      background: url('https://avatars.mds.yandex.net/get-vertis-journal/4471904/chery_tiggo_7_692.jpeg_1681254828511/orig') center/cover no-repeat;
+      opacity: 0.12;
+      z-index: 1;
+    }
+    nav {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 36px 40px 0 40px;
+      z-index: 2;
+      position: relative;
+    }
+    .logo {
+      font-size: 2.3rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      color: #fff;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.09);
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 36px;
+      margin: 0;
+      padding: 0;
+    }
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 1.1rem;
+      font-weight: 500;
+      transition: color .2s;
+      position: relative;
+    }
+    nav a::after {
+      content: '';
+      display: block;
+      width: 0;
+      height: 2px;
+      background: #ffb300;
+      transition: width .3s;
+      position: absolute;
+      bottom: -5px; left: 0;
+    }
+    nav a:hover {
+      color: #ffb300;
+    }
+    nav a:hover::after {
+      width: 100%;
+    }
+    .hero-content {
+      z-index: 2;
+      position: relative;
+      text-align: center;
+      margin-top: 80px;
+      animation: fadeInDown 1.2s;
+    }
+    .hero-content h1 {
+      font-size: 3rem;
+      font-weight: 800;
+      margin-bottom: 18px;
+      letter-spacing: 1px;
+      text-shadow: 0 4px 16px rgba(0,0,0,0.14);
+      color: #fff;
+    }
+    .hero-content p {
+      font-size: 1.2rem;
+      margin-bottom: 40px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.5;
+      color: #cfcfcf;
+    }
+    .btn {
+      background: linear-gradient(90deg, #ffb300 0%, #c97c2e 100%);
+      color: #232b36;
+      padding: 16px 44px;
+      border: none;
+      border-radius: 8px;
+      font-size: 1.15rem;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 4px 18px rgba(0,0,0,0.13);
+      transition: background .2s, color .2s, transform .2s;
+      text-decoration: none;
+      display: inline-block;
+    }
+    .btn:hover {
+      background: linear-gradient(90deg, #c97c2e 0%, #ffb300 100%);
+      color: #fff;
+      transform: scale(1.05);
+    }
+    section {
+      max-width: 1200px;
+      margin: 0 auto 80px auto;
+      padding: 0 30px;
+    }
+    .parallax {
+      background: url('https://images.unsplash.com/photo-1511918984145-48de785d4c4e?auto=format&fit=crop&w=1200&q=80') center/cover no-repeat fixed;
+      min-height: 220px;
+      margin-bottom: 60px;
+      border-radius: 24px;
+      box-shadow: 0 6px 28px rgba(0,0,0,0.18);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 2.1rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-shadow: 0 4px 16px rgba(0,0,0,0.24);
+      position: relative;
+      overflow: hidden;
+    }
+    .parallax::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(24,30,38,0.65);
+      z-index: 1;
+    }
+    .parallax-text {
+      position: relative;
+      z-index: 2;
+    }
+    .features-list, .car-list {
+      display: flex;
+      gap: 40px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .features-list .feature {
+      background: linear-gradient(135deg, #232b36 80%, #181e26 100%);
+      border-radius: 16px;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.16);
+      padding: 36px 30px;
+      min-width: 240px;
+      max-width: 300px;
+      flex: 1;
+      text-align: center;
+      margin-bottom: 20px;
+      transition: transform .2s, box-shadow .2s;
+      border: 1.5px solid #232b36;
+    }
+    .features-list .feature:hover {
+      transform: translateY(-8px) scale(1.04);
+      box-shadow: 0 8px 32px rgba(255,179,0,0.13);
+      border-color: #ffb300;
+    }
+    .features-list .feature h3 {
+      color: #ffb300;
+      font-size: 1.3rem;
+      margin-bottom: 10px;
+    }
+    .social-icon {
+      width: 60px;
+      height: 60px;
+      margin-bottom: 15px;
+      transition: transform 0.3s ease;
+    }
+
+    .social-link {
+      display: block;
+      text-decoration: none;
+    }
+
+    .social-link:hover .social-icon {
+      transform: scale(1.1);
+    }
+
+    /* Для анимации иконок телефона */
+    .feature:nth-child(3) .social-link:hover .social-icon {
+      animation: shake 0.5s;
+    }
+
     @keyframes shake {
+      0% { transform: rotate(0deg); }
+      25% { transform: rotate(15deg); }
+      50% { transform: rotate(-15deg); }
+      75% { transform: rotate(10deg); }
+      100% { transform: rotate(0deg); }
+    }
+    .steps-list {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 40px;
+      margin-top: 40px;
+      padding: 20px 0;
+    }
+
+    .steps-list::before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: #ffb300;
+      transform: translateX(-50%);
+      z-index: 0;
+    }
+
+    .step {
+      background: #232b36;
+      border-radius: 8px;
+      padding: 20px 30px;
+      font-size: 1.15rem;
+      position: relative;
+      box-shadow: 0 2px 12px rgba(255, 179, 0, 0.07);
+      color: #e6e6e6;
+      width: 45%;
+      z-index: 1;
+      text-align: center;
+      opacity: 0; /* For JS animation */
+      transform: translateY(20px); /* For JS animation */
+      transition: opacity 0.6s ease, transform 0.6s ease; /* For JS animation */
+    }
+
+    .step span {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: #ffb300;
+      color: #232b36;
+      font-weight: bold;
+      font-size: 1.4rem;
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 8px rgba(255, 179, 0, 0.15);
+      z-index: 2;
+    }
+
+    /* Нечетные (правые) блоки: прямоугольник -> отступ -> круг */
+    .step:nth-child(odd) {
+      margin-right: 55%; /* Было 50%, потом 55% в вашем CSS, оставляю 55% */
+      border-right: 5px solid #ffb300;
+    }
+    .step:nth-child(odd) span {
+      left: calc(100% + 15px); /* Отступ 15px после прямоугольника */
+    }
+
+    /* Четные (левые) блоки: круг -> отступ -> прямоугольник */
+    .step:nth-child(even) {
+      margin-left: 55%; /* Было 50%, потом 55% в вашем CSS, оставляю 55% */
+      border-left: 5px solid #ffb300;
+    }
+    .step:nth-child(even) span {
+      right: calc(100% + 15px); /* Отступ 15px перед прямоугольником */
+    }
+
+    .cars h2, .features h2, .steps h2, .contact h2 {
+      text-align: center;
+      margin-bottom: 40px;
+      font-size: 2.2rem;
+      color: #ffb300;
+      font-weight: 800;
+      letter-spacing: 1px;
+    }
+    .car-list {
+      gap: 40px;
+    }
+    .car-card {
+      background: linear-gradient(135deg, #232b36 80%, #181e26 100%);
+      border-radius: 14px;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.19);
+      padding: 28px;
+      width: 340px;
+      min-height: 420px;
+      text-align: center;
+      transition: transform .2s, box-shadow .2s;
+      position: relative;
+      overflow: hidden;
+      animation: fadeInUp 1.3s;
+      border: 1.5px solid #232b36;
+      cursor: pointer;
+      display: flex; /* Added for better content alignment */
+      flex-direction: column; /* Added for better content alignment */
+      justify-content: space-between; /* Added for better content alignment */
+    }
+    .car-card:hover {
+      transform: translateY(-10px) scale(1.04);
+      box-shadow: 0 12px 36px rgba(255,179,0,0.13);
+      border-color: #ffb300;
+    }
+    .car-card img {
+      width: 100%;
+      height: 200px; /* Added fixed height for consistency */
+      object-fit: cover; /* Ensures image covers the area without distortion */
+      border-radius: 10px;
+      margin-bottom: 20px;
+      transition: filter .2s;
+      border: 1.5px solid #232b36;
+    }
+    .car-card:hover img {
+      filter: brightness(1.07) saturate(1.2);
+      border-color: #ffb300;
+    }
+    .car-card h3 {
+      color: #ffb300;
+      font-size: 1.25rem;
+      margin-bottom: 8px;
+      flex-grow: 1; /* Allows h3 to take available space if p tags are removed */
+    }
+    .car-card .price {
+      color: #fff;
+      font-weight: 700;
+    }
+    .gallery-hint {
+      color: #ffb300;
+      font-size: 0.95rem;
+      margin-top: 10px;
+      opacity: 0.8;
+      background: #ffb300;
+      color: #232b36;
+      padding: 12px 24px;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+     .gallery-hint:hover {
+        opacity: 1;
+        transform: scale(1.05);
+    }
+    .contact form {
+      background: #232b36;
+      border-radius: 12px;
+      box-shadow: 0 4px 18px rgba(0,0,0,0.19);
+      padding: 36px 28px 20px 28px;
+      max-width: 470px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 22px;
+      animation: fadeInUp 1.4s;
+      border: 1.5px solid #232b36;
+    }
+    .contact label {
+      font-weight: 500;
+      margin-bottom: 3px;
+      color: #ffb300;
+    }
+    .contact input, .contact select {
+      padding: 12px 14px;
+      border: 1.5px solid #3a4350;
+      border-radius: 6px;
+      font-size: 1.05rem;
+      background: #181e26;
+      color: #fff;
+      outline: none;
+      transition: border .2s;
+      box-sizing: border-box; /* Added for consistent padding/border behavior */
+    }
+    .contact input:focus, .contact select:focus {
+      border: 1.5px solid #ffb300;
+    }
+    .contact .btn {
+      margin-top: 10px;
+    }
+    #successMessage {
+      color: #4caf50;
+      text-align: center;
+      margin-top: 25px;
+      font-size: 1.2rem;
+      animation: fadeInDown 1.2s;
+    }
+    .hidden {
+      display: none !important; /* Added !important to ensure override */
+    }
+    footer {
+      background: linear-gradient(90deg, #181e26 80%, #232b36 100%);
+      color: #ffb300;
+      text-align: center;
+      padding: 28px 0;
+      margin-top: 80px;
+      font-size: 1.05rem;
+      letter-spacing: 1px;
+      font-weight: 500;
+      border-top: 1.5px solid #232b36;
+    }
+    h2 {
+      text-align: center;
+      margin-bottom: 40px;
+      font-size: 2.3rem;
+      color: #ffb300;
+      font-weight: 800;
+      letter-spacing: 1px;
+    }
+    /* Анимации */
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-40px);}
+      to { opacity: 1; transform: translateY(0);}
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(40px);}
+      to { opacity: 1; transform: translateY(0);}
+    }
+    /* Модальная галерея */
+    .modal {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: fixed;
+      z-index: 9999;
+      left: 0; top: 0; width: 100vw; height: 100vh;
+      background: rgba(24,30,38,0.93);
+      transition: opacity 0.2s;
+    }
+    /* .modal.hidden is already defined, no need to repeat */
+    .modal-content {
+      background: #232b36;
+      border-radius: 12px;
+      padding: 24px;
+      position: relative;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.4);
+      text-align: center;
+      max-width: 90vw;
+      max-height: 90vh;
+      display: flex; /* Added for centering content */
+      flex-direction: column; /* Added for centering content */
+      justify-content: center; /* Added for centering content */
+      align-items: center; /* Added for centering content */
+    }
+    .modal-content img {
+      max-width: 70vw;
+      max-height: 60vh;
+      border-radius: 10px;
+      margin-bottom: 16px;
+      box-shadow: 0 2px 12px #0006;
+      object-fit: contain; /* Ensures full image is visible */
+    }
+    .close {
+      position: absolute;
+      top: 12px; right: 18px;
+      font-size: 2.3rem;
+      color: #ffb300;
+      cursor: pointer;
+      font-weight: bold;
+      z-index: 2;
+      transition: color 0.2s;
+    }
+    .close:hover {
+      color: #fff;
+    }
+    .gallery-controls {
+      display: flex;
+      justify-content: center;
+      align-items: center; /* Vertically align items */
+      gap: 24px;
+    }
+    .gallery-controls button {
+      background: #ffb300;
+      color: #232b36;
+      border: none;
+      border-radius: 50%;
+      width: 44px; height: 44px;
+      font-size: 2rem;
+      cursor: pointer;
+      font-weight: 700;
+      transition: background 0.2s, color 0.2s;
+      display: flex; /* For centering text inside button */
+      align-items: center; /* For centering text inside button */
+      justify-content: center; /* For centering text inside button */
+      line-height: 1; /* Adjust line height for better vertical centering */
+    }
+    .gallery-controls button:hover {
+      background: #fff;
+      color: #ffb300;
+    }
+    #photoCounter {
+        font-size: 1.1rem;
+        color: #e6e6e6;
+        min-width: 50px; /* Ensure it doesn't jump around too much */
+        text-align: center;
+    }
+
+    /* Стили для валидации */
+    .status-indicator { /* This class seems unused in the provided HTML/JS */
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        margin-top: 8px;
+        transition: background-color 0.3s;
+    }
+
+    #phone { /* This selector is already defined above, merging styles */
+        /* padding: 12px; */ /* Already defined */
+        /* border: 2px solid #ff4444; */ /* This will be handled by JS logic */
+        /* border-radius: 8px; */ /* Already defined */
+        /* font-size: 16px; */ /* Already defined as 1.05rem */
+        /* transition: border-color 0.3s; */ /* Already defined */
+        /* width: 100%; */ /* Already default for block inputs in flex form */
+        /* box-sizing: border-box; */ /* Added above */
+    }
+
+    #phone:valid {
+        border-color: #4CAF50 !important; /* Keep !important if needed for specificity */
+    }
+
+    #phone:focus {
+        /* outline: none; */ /* Already defined */
+        box-shadow: 0 0 6px rgba(76, 175, 80, 0.3);
+    }
+
+    #phone::placeholder {
+        color: #999;
+        opacity: 1; /* Фикс для Firefox */
+    }
+
+    #phone.invalid {
+        border-color: #ff4444 !important; /* Added !important for specificity */
+        animation: shakeInput 0.5s; /* Renamed to avoid conflict with .social-icon shake */
+    }
+    
+    .error-message { /* This class is referenced in JS but not in HTML. Add if needed. */
+        color: #ff4444;
+        font-size: 0.9em;
+        margin-top: 5px;
+        display: block;
+    }
+
+    @keyframes shakeInput { /* Renamed from shake */
         0%, 100% { transform: translateX(0); }
         25% { transform: translateX(5px); }
         75% { transform: translateX(-5px); }
+    }
+
+    /* Гамбургер-меню */
+    .hamburger {
+      display: none; /* Initially hidden, shown in media query */
+      cursor: pointer;
+      z-index: 1001; /* Ensure it's above nav content */
+    }
+
+    .hamburger .line {
+      width: 30px;
+      height: 3px;
+      background: #fff;
+      margin: 5px 0;
+      transition: 0.3s;
+    }
+    
+    /* Hamburger active state */
+    .hamburger.active .line:nth-child(1) {
+        transform: rotate(-45deg) translate(-5px, 6px);
+    }
+    .hamburger.active .line:nth-child(2) {
+        opacity: 0;
+    }
+    .hamburger.active .line:nth-child(3) {
+        transform: rotate(45deg) translate(-5px, -6px);
+    }
+
+    /* Плавная прокрутка */
+    html {
+      scroll-behavior: smooth;
+    }
+
+    @media (max-width: 900px) {
+      .features-list, .car-list { flex-direction: column; align-items: center; }
+      /* nav { flex-direction: column; gap: 12px; } */ /* This is handled by hamburger logic */
+      .hero-content h1 { font-size: 2.4rem; } /* Slightly increased from 2rem */
+      .car-card { width: 90%; max-width: 380px; min-height: unset; } /* Max-width added */
+      .parallax { font-size: 1.5rem; } /* Slightly increased */
+    }
+    
+    @media (max-width: 768px) {
+      nav {
+        padding: 20px; /* Adjust padding */
+        align-items: center; /* Ensure logo and hamburger are aligned */
+      }
+      nav ul {
+        display: none; /* Hidden by default */
+        flex-direction: column;
+        gap: 20px; /* Increased gap */
+        text-align: center;
+        position: absolute;
+        top: 80px; /* Position below header */
+        left: 0;
+        width: 100%;
+        background: #181e26; /* Background for dropdown */
+        padding: 20px 0;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      }
+      
+      nav.active ul { /* When nav has .active class (set by JS) */
+        display: flex;
+      }
+
+      .hamburger {
+        display: block; /* Show hamburger */
+        /* position: absolute; */ /* Removed absolute to let it flow in nav */
+        /* right: 20px; */
+        /* top: 30px; */
+      }
+
+      .hero-content h1 {
+        font-size: 2rem;
+        padding: 0 15px;
+      }
+
+      /* .car-card is already handled by max-width: 900px rule */
+
+      .step {
+        width: 85%;
+        font-size: 1rem;
+        padding: 15px;
+        margin-right: 0 !important; /* Override desktop margins */
+        margin-left: 0 !important; /* Override desktop margins */
+        border-right: none !important; /* Remove side borders */
+        border-left: none !important; /* Remove side borders */
+        text-align: left; /* Better readability on mobile */
+      }
+
+      .step span {
+        position: static; /* Normal flow */
+        transform: none; /* Reset transform */
+        margin: 0 auto 15px auto; /* Center and add bottom margin */
+        display: block; /* Make it block to center with auto margins */
+        float: none; /* Ensure it doesn't float */
+      }
+
+      .steps-list::before {
+        display: none; /* Hide the timeline bar on mobile */
+      }
+
+      .contact form {
+        width: 90%;
+      }
+      .modal-content img {
+        max-width: 90vw;
+        max-height: 50vh; /* Increased from 40vh */
+      }
     }
   </style>
 </head>
@@ -45,61 +697,557 @@
     <div class="overlay"></div>
   </header>
 
+  <!--<section class="parallax">
+    <div class="parallax-text">Ощутите новый уровень сервиса</div>
+  </section>-->
+
   <section id="steps" class="steps">
     <h2>Как мы работаем</h2>
     <div class="steps-list">
-        <!-- Содержимое секции steps -->
+        <div class="step"><span>1</span> Заключение юридического договора в котором указываются все характеристики авто и конечный бюджет,далее внесение гарантийного взноса. Это подтверждает ваше право на покупку и серьёзность намерений. </div>
+        <div class="step"><span>2</span> Подбор авто по вашему запросу,после согласования преступаем к оплате автомобиля и логистической цепочки до города Владивостока. </div>
+        <div class="step"><span>3</span> После оплаты автомобиля компания «GETCAR» организует его доставку до границы России. Вам остаётся только дождаться прибытия автомобиля. </div>
+        <div class="step"><span>4</span> По прибытии автомобиля на границу России необходимо оплатить таможенную пошлину,утилизационный сбор. </div>
+        <div class="step"><span>5</span> После успешного прохождения всех процедур автомобиль будет полностью готов к выдаче.</div>
     </div>
-  </section>
+</section>
 
   <section id="cars" class="cars">
     <h2>Примеры автомобилей</h2>
     <div class="car-list">
-      <!-- Статические данные автомобилей -->
-      <div class="car-card" data-car="Honda1">
-        <img src="static/images/Honda%20CR-V/1.jpg" alt="Honda CR-V">
+      <!-- Пример статичной карточки 1. Замените 'car1' и пути к изображениям -->
+      <div class="car-card" data-car="car1">
+        <img src="images/placeholder-car1.jpg" alt="Toyota Camry"> <!-- ЗАМЕНИТЕ ПУТЬ -->
+        <h3>Toyota Camry</h3>
+        <!-- <p>Рыночная стоимость: <span class="price">2 500 000 ₽</span></p>
+        <p>Цена под заказ: <span class="price">2 200 000 ₽</span></p>
+        <p>Цена под ключ: <span class="price">2 350 000 ₽</span></p> -->
+        <button class="gallery-hint">Посмотреть фото</button>
+      </div>
+      <!-- Пример статичной карточки 2. Замените 'car2' и пути к изображениям -->
+      <div class="car-card" data-car="car2">
+        <img src="images/placeholder-car2.jpg" alt="Honda CR-V"> <!-- ЗАМЕНИТЕ ПУТЬ -->
         <h3>Honda CR-V</h3>
         <button class="gallery-hint">Посмотреть фото</button>
       </div>
-      <div class="car-card" data-car="Toyota1">
-        <img src="static/images/Toyota%20Corolla%20Fielder/1.jpg" alt="Toyota Corolla Fielder">
-        <h3>Toyota Corolla Fielder</h3>
+      <!-- Пример статичной карточки 3. Замените 'car3' и пути к изображениям -->
+      <div class="car-card" data-car="car3">
+        <img src="images/placeholder-car3.jpg" alt="Geely Monjaro"> <!-- ЗАМЕНИТЕ ПУТЬ -->
+        <h3>Geely Monjaro</h3>
         <button class="gallery-hint">Посмотреть фото</button>
       </div>
-      <!-- Остальные автомобили -->
     </div>
   </section>
 
   <section id="why" class="features">
-    <!-- Содержимое секции связи -->
+    <h2>Связь с нами</h2>
+    <div class="features-list">
+      <div class="feature">
+        <a href="https://t.me/getcar125" target="_blank" class="social-link">
+          <img src="images/telegram.png" alt="Telegram" class="social-icon"> <!-- ИЗМЕНЕН ПУТЬ -->
+        </a>
+        <h3>Telegram</h3>
+      </div>
+      <div class="feature">
+        <a href="https://www.instagram.com/getcar125?igsh=ZWl2Y2w5OWhyd3V2&utm_source=qr" target="_blank" class="social-link">
+          <img src="images/Instagram.png" alt="Instagram" class="social-icon"> <!-- ИЗМЕНЕН ПУТЬ -->
+        </a>
+        <h3>Instagram</h3>
+      </div>
+      <div class="feature">
+        <a href="tel:+79149612301" class="social-link">
+          <img src="images/tel.png" alt="Телефон" class="social-icon"> <!-- ИЗМЕНЕН ПУТЬ -->
+        </a>
+        <h3>Номер телефона</h3>
+        <p>+7 914 961-23-01</p>
+      </div>
+    </div>
   </section>
 
   <section id="contact" class="contact">
-    <!-- Форма заявки -->
+    <h2>Оставить заявку</h2>
+    <form id="orderForm">
+      <label for="car">Марка, модель и год автомобиля:</label>
+      <input type="text" id="car" name="car" list="cars-list" 
+         required placeholder="Например: Honda CR-V">
+      <!-- datalist можно заполнить вручную или через JS, если нужно -->
+      <datalist id="cars-list">
+        <option value="Toyota Camry">
+        <option value="Honda CR-V">
+        <option value="Geely Monjaro">
+        <option value="Kia Sportage">
+        <option value="Hyundai Tucson">
+      </datalist>
+
+      <label for="name">Ваше имя:</label>
+      <input type="text" id="name" name="name" required placeholder="Иван Иванов">
+      
+      <label for="phone">Телефон:</label>
+      <input type="tel" id="phone" name="phone" required 
+             placeholder="+7 (___) ___-__-__"
+             pattern="\+7\s\(\d{3}\)\s\d{3}-\d{2}-\d{2}">
+      <!-- <div class="error-message" style="display:none;"></div>  Optional: for error messages -->
+      
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" required placeholder="example@mail.com">
+      
+      <label for="tg">Telegram (опционально):</label>
+      <input type="text" id="tg" name="tg" placeholder="@username"> <!-- Изменен type на text -->
+      
+      <button type="submit" class="btn">Отправить заявку</button>
+    </form>
+    <div id="successMessage" class="hidden">
+      Заявка успешно отправлена! В ближайшее время, с вами свяжется наш сотрудник.
+    </div>
   </section>
 
+  <!-- Модальное окно галереи -->
   <div id="galleryModal" class="modal hidden">
-    <!-- Модальное окно -->
+    <div class="modal-content">
+      <span class="close">×</span>
+      <img id="galleryImage" src="" alt="Фото авто" loading="lazy">
+      <div class="gallery-controls">
+        <button id="prevPhoto"><</button>
+        <span id="photoCounter"></span>
+        <button id="nextPhoto">></button>
+      </div>
+    </div>
   </div>
 
-  <script>
-    // Содержимое script.js
-    const carsData = {
-      "Honda1": {
-        "name": "Honda CR-V",
-        "images": ["static/images/Honda%20CR-V/1.jpg", "static/images/Honda%20CR-V/2.jpg"],
-        "prices": {"market": "2 000 000 ₽", "order": "1 850 000 ₽", "full": "1 980 000 ₽"}
+  <script id="cars-data-json" type="application/json">
+    {
+      "car1": {
+        "name": "Toyota Camry",
+        "images": [
+          "images/camry1.jpg", 
+          "images/camry2.jpg", 
+          "images/camry3.jpg"
+        ]
       },
-      // Остальные данные автомобилей
-    };
-
-    // Весь JavaScript код из script.js
-    const galleryModal = document.getElementById('galleryModal');
-    // ... весь остальной JS код ...
+      "car2": {
+        "name": "Honda CR-V",
+        "images": [
+          "images/crv1.jpg",
+          "images/crv2.jpg"
+        ]
+      },
+      "car3": {
+        "name": "Geely Monjaro",
+        "images": [
+          "images/monjaro1.jpg",
+          "images/monjaro2.jpg",
+          "images/monjaro3.jpg",
+          "images/monjaro4.jpg"
+        ]
+      }
+    }
   </script>
 
   <footer>
     © 2025 GETCAR. Все права защищены.
   </footer>
+
+  <script>
+    // Содержимое вашего script.js будет здесь
+    document.addEventListener('DOMContentLoaded', () => {
+      const galleryModal = document.getElementById('galleryModal');
+      const galleryImage = document.getElementById('galleryImage');
+      const closeBtn = galleryModal.querySelector('.close');
+      const prevBtn = document.getElementById('prevPhoto');
+      const nextBtn = document.getElementById('nextPhoto');
+      const photoCounter = document.getElementById('photoCounter');
+
+      let currentCarPhotos = [];
+      let currentPhotoIndex = 0;
+
+      // Получаем данные автомобилей из JSON
+      const carsDataElement = document.getElementById('cars-data-json');
+      let carsData = {};
+      if (carsDataElement) {
+          try {
+            carsData = JSON.parse(carsDataElement.textContent);
+          } catch (e) {
+            console.error("Ошибка парсинга JSON данных автомобилей:", e);
+          }
+      } else {
+          console.error("Элемент #cars-data-json не найден.");
+      }
+
+
+      // Функции для работы галереи
+      function updatePhotoCounter() {
+        photoCounter.textContent = currentCarPhotos.length 
+          ? `${currentPhotoIndex + 1}/${currentCarPhotos.length}`
+          : 'Нет фото';
+      }
+
+      function openGallery(carId) {
+        const car = carsData[carId];
+        if (!car || !car.images || car.images.length === 0) {
+          // console.error(`Нет данных или изображений для автомобиля: ${carId}`);
+          // Можно показать сообщение пользователю или просто не открывать галерею
+          galleryImage.src = 'images/no-image-placeholder.png'; // Заглушка, если нет фото
+          currentCarPhotos = [];
+          currentPhotoIndex = 0;
+          photoCounter.textContent = 'Фото нет';
+          galleryModal.classList.remove('hidden');
+          return;
+        }
+        
+        currentCarPhotos = car.images;
+        currentPhotoIndex = 0;
+        
+        galleryImage.src = currentCarPhotos[0];
+        galleryImage.alt = `Фото ${car.name || 'автомобиля'}`;
+        galleryModal.classList.remove('hidden');
+        updatePhotoCounter();
+      }
+
+      function closeGallery() {
+        galleryModal.classList.add('hidden');
+        galleryImage.src = ""; // Очищаем src, чтобы избежать показа старого изображения при следующем открытии
+      }
+
+      function navigatePhotos(direction) {
+        if (!currentCarPhotos || currentCarPhotos.length === 0) return;
+
+        const lastIndex = currentCarPhotos.length - 1;
+        
+        currentPhotoIndex = direction === 'next' 
+          ? (currentPhotoIndex === lastIndex ? 0 : currentPhotoIndex + 1)
+          : (currentPhotoIndex === 0 ? lastIndex : currentPhotoIndex - 1);
+        
+        galleryImage.src = currentCarPhotos[currentPhotoIndex];
+        updatePhotoCounter();
+      }
+
+      // Обработчики событий
+      document.querySelectorAll('.car-card').forEach(card => {
+        const btn = card.querySelector('.gallery-hint');
+        if (btn) {
+            btn.addEventListener('click', (event) => {
+                event.stopPropagation(); // Предотвращаем всплытие, если на карточке есть другие обработчики
+                const carId = card.dataset.car;
+                if (carsData[carId]) {
+                openGallery(carId);
+                } else {
+                console.warn(`Данные для carId "${carId}" не найдены в carsData.`);
+                // Можно открыть галерею с сообщением "Нет фото"
+                openGallery(null); // или специальный carId для "нет фото"
+                }
+            });
+        }
+      });
+
+      if (closeBtn) closeBtn.addEventListener('click', closeGallery);
+      if (prevBtn) prevBtn.addEventListener('click', () => navigatePhotos('prev'));
+      if (nextBtn) nextBtn.addEventListener('click', () => navigatePhotos('next'));
+
+      window.addEventListener('click', (e) => {
+        if (e.target === galleryModal) closeGallery();
+      });
+
+      document.addEventListener('keydown', (e) => {
+        if (galleryModal.classList.contains('hidden')) return;
+
+        switch(e.key) {
+          case 'Escape':
+            closeGallery();
+            break;
+          case 'ArrowLeft':
+            navigatePhotos('prev');
+            break;
+          case 'ArrowRight':
+            navigatePhotos('next');
+            break;
+        }
+      });
+
+      // Маска и валидация телефона
+      const phoneInput = document.getElementById('phone');
+      if (phoneInput) {
+        phoneInput.addEventListener('input', function(e) {
+            const start = this.selectionStart;
+            const end = this.selectionEnd;
+            const isBackspace = e.inputType === 'deleteContentBackward' || e.inputType === 'deleteContentForward';
+            
+            let numbers = this.value.replace(/\D/g, '');
+            
+            // Если первая цифра не 7, и поле не пустое, добавляем 7
+            if (numbers.length > 0 && numbers[0] !== '7') {
+                 numbers = '7' + numbers.substring(0,10); // Ограничиваем до 10 цифр после 7
+            } else if (numbers.length > 0 && numbers[0] === '7') {
+                 numbers = numbers.substring(0,11); // Ограничиваем до 11 цифр если начинается с 7
+            }
+
+
+            let formatted = '';
+            if (numbers.length > 0) {
+                formatted = '+7';
+                if (numbers.length > 1) {
+                    formatted += ` (${numbers.slice(1, 4)}`;
+                }
+                if (numbers.length > 4) {
+                    formatted += `) ${numbers.slice(4, 7)}`;
+                }
+                if (numbers.length > 7) {
+                    formatted += `-${numbers.slice(7, 9)}`;
+                }
+                if (numbers.length > 9) {
+                    formatted += `-${numbers.slice(9, 11)}`;
+                }
+            }
+            
+            this.value = formatted;
+            
+            // Корректируем позицию курсора
+            // Это упрощенная логика, может потребовать доработки для идеального поведения курсора
+            let newPos = start;
+            if (this.value.length > formatted.length && !isBackspace) {
+                newPos = start + (this.value.length - formatted.length);
+            } else if (isBackspace && start > 0) {
+                // Пытаемся сохранить позицию или сдвинуть влево, если символ удален
+                // Эта часть может быть сложной для идеальной реализации без более глубокого анализа
+                newPos = start; 
+            } else {
+                newPos = start;
+            }
+            // Для простоты, просто ставим курсор в конец при активном вводе
+            if (!isBackspace && e.inputType !== 'historyUndo') {
+                newPos = this.value.length;
+            }
+
+            this.setSelectionRange(newPos, newPos);
+            
+            // Визуальная индикация
+            this.style.borderColor = numbers.length === 11 ? '#4CAF50' : '#ff4444';
+            if (this.value === "") this.style.borderColor = '#3a4350'; // Default border if empty
+        });
+
+        phoneInput.addEventListener('blur', function() {
+            const numbers = this.value.replace(/\D/g, '');
+            if (this.value !== "" && (numbers.length !== 11 || !this.checkValidity())) {
+                this.classList.add('invalid');
+                // const errorMessageDiv = this.nextElementSibling;
+                // if (errorMessageDiv && errorMessageDiv.classList.contains('error-message')) {
+                //     errorMessageDiv.textContent = 'Введите номер в формате: +7 (XXX) XXX-XX-XX';
+                //     errorMessageDiv.style.display = 'block';
+                // }
+            } else {
+                this.classList.remove('invalid');
+                // const errorMessageDiv = this.nextElementSibling;
+                // if (errorMessageDiv && errorMessageDiv.classList.contains('error-message')) {
+                //     errorMessageDiv.style.display = 'none';
+                // }
+            }
+        });
+      }
+
+
+      // Валидация и отправка формы
+      const orderForm = document.getElementById('orderForm');
+      if (orderForm) {
+        orderForm.addEventListener('submit', function(e) {
+          e.preventDefault();
+          const currentPhoneInput = document.getElementById('phone'); // Переопределяем, чтобы быть уверенным
+          const tgInput = document.getElementById('tg');
+
+          // Проверка телефона
+          const numbers = currentPhoneInput.value.replace(/\D/g, '');
+          if (numbers.length !== 11 || !numbers.startsWith('7')) {
+            currentPhoneInput.style.borderColor = '#ff4444';
+            currentPhoneInput.classList.add('invalid');
+            alert('Введите полный номер телефона в формате: +7 (999) 123-45-67');
+            return;
+          } else {
+            currentPhoneInput.style.borderColor = '#4CAF50';
+            currentPhoneInput.classList.remove('invalid');
+          }
+
+          // Валидация Telegram (если поле было затронуто или не пустое)
+          let tgValue = tgInput.value.trim();
+          const wasTouched = tgInput.dataset.touched === 'true' || tgValue !== "";
+
+          if (wasTouched && tgValue !== "") { // Проверяем, только если было взаимодействие или есть значение
+            if (!tgValue.startsWith('@') || tgValue.length < 2) { // @ + хотя бы 1 символ
+              tgInput.style.borderColor = '#ff4444';
+              tgInput.classList.add('invalid');
+              alert('Телеграм должен начинаться с @ и содержать хотя бы один символ после @, если указан.');
+              return;
+            } else {
+              tgInput.style.borderColor = '#4CAF50';
+              tgInput.classList.remove('invalid');
+            }
+          } else {
+             tgInput.style.borderColor = '#3a4350'; // Reset border if not touched/empty
+             tgInput.classList.remove('invalid');
+          }
+
+
+          // Подготовка и отправка данных (заглушка, т.к. нет реального /submit-form)
+          const formData = new FormData(this);
+          formData.set('phone', `+${numbers}`); // Отправляем нормализованный номер
+          formData.set('tg', tgValue); // Отправляем обработанное значение Telegram
+
+          console.log("Данные формы для отправки:");
+          for (let [key, value] of formData.entries()) {
+            console.log(key, value);
+          }
+          
+          // Имитация отправки
+          // Замените этот блок на реальный fetch, если у вас есть серверный обработчик
+          setTimeout(() => {
+            this.classList.add('hidden');
+            const successMessage = document.getElementById('successMessage');
+            if (successMessage) successMessage.classList.remove('hidden');
+            // orderForm.reset(); // Очистить форму после "успешной" отправки
+            // tgInput.dataset.touched = 'false'; // Сбросить флаг
+            // currentPhoneInput.style.borderColor = '#3a4350';
+            // tgInput.style.borderColor = '#3a4350';
+          }, 1000);
+
+          /* 
+          // РЕАЛЬНЫЙ FETCH (если есть сервер)
+          fetch('/submit-form', { // Укажите правильный URL вашего обработчика
+            method: 'POST',
+            body: formData
+          })
+          .then(response => {
+            if (!response.ok) throw new Error('Ошибка сервера: ' + response.status);
+            return response.json();
+          })
+          .then(data => {
+            if(data.success) {
+              this.classList.add('hidden');
+              document.getElementById('successMessage').classList.remove('hidden');
+              // orderForm.reset(); 
+              // tgInput.dataset.touched = 'false';
+              // currentPhoneInput.style.borderColor = '#3a4350';
+              // tgInput.style.borderColor = '#3a4350';
+            } else {
+              alert('Ошибка: ' + (data.message || 'Попробуйте ещё раз'));
+            }
+          })
+          .catch(error => {
+            console.error('Error:', error);
+            alert('Ошибка соединения: ' + error.message);
+          });
+          */
+        });
+      }
+
+      // Обработчики для поля Telegram
+      const tgInput = document.getElementById('tg');
+      if (tgInput) {
+        tgInput.addEventListener('focus', function() {
+          if (!this.value.startsWith('@')) {
+            this.value = '@' + this.value;
+          }
+          // Устанавливаем курсор после @, если только @ в поле
+          if (this.value === '@') {
+             this.setSelectionRange(1, 1);
+          }
+          this.dataset.touched = 'true';
+        });
+
+        tgInput.addEventListener('input', function(e) {
+          let value = this.value;
+          if (value === "") { // Если пользователь все стер
+             this.style.borderColor = '#3a4350'; // Сброс рамки
+             this.classList.remove('invalid');
+             return;
+          }
+          if (!value.startsWith('@')) {
+            value = '@' + value.replace(/@/g, ''); // Убираем лишние @
+            this.value = value;
+             // Ставим курсор в конец после авто-добавления @
+            this.setSelectionRange(this.value.length, this.value.length);
+          }
+          this.dataset.touched = 'true';
+
+          // Простая валидация при вводе
+          if (this.value.length < 2 && this.value.startsWith('@')) { // Только @
+            this.style.borderColor = '#ff4444';
+            this.classList.add('invalid');
+          } else if (this.value.startsWith('@') && this.value.length >=2) {
+            this.style.borderColor = '#4CAF50';
+            this.classList.remove('invalid');
+          } else { // Если вдруг не начинается с @ (хотя предыдущая логика должна это исправить)
+            this.style.borderColor = '#ff4444';
+            this.classList.add('invalid');
+          }
+
+        });
+         tgInput.addEventListener('blur', function() {
+            if (this.value === '@') { // Если остался только символ @
+                this.value = ''; // Очищаем поле
+                this.style.borderColor = '#3a4350'; // Сброс рамки
+                this.classList.remove('invalid');
+                this.dataset.touched = 'false'; // Считаем, что поле не трогали, если оно пустое
+            } else if (this.value !== "" && (!this.value.startsWith('@') || this.value.length < 2)) {
+                this.style.borderColor = '#ff4444';
+                this.classList.add('invalid');
+            } else if (this.value === "") {
+                this.style.borderColor = '#3a4350';
+                this.classList.remove('invalid');
+            }
+        });
+      }
+
+      // Анимация шагов при прокрутке
+      function animateSteps() {
+        const steps = document.querySelectorAll('.step');
+        const triggerBottom = window.innerHeight * 0.85; // Чуть позже запускаем анимацию
+        
+        steps.forEach(step => {
+          const stepTop = step.getBoundingClientRect().top;
+          if (stepTop < triggerBottom && step.style.opacity !== '1') { // Анимируем только если еще не анимировано
+            step.style.opacity = '1';
+            step.style.transform = 'translateY(0)';
+          }
+        });
+      }
+      
+      window.addEventListener('scroll', animateSteps);
+      animateSteps(); // Первоначальный вызов для элементов, которые уже видны
+
+      // Плавная прокрутка для якорных ссылок
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+          e.preventDefault();
+          const targetId = this.getAttribute('href');
+          const targetElement = document.querySelector(targetId);
+          
+          if(targetElement) {
+            targetElement.scrollIntoView({
+              behavior: 'smooth',
+              block: 'start'
+            });
+            
+            // Закрытие мобильного меню
+            const hamburger = document.querySelector('.hamburger');
+            const nav = document.querySelector('nav');
+            if (hamburger && nav) {
+                hamburger.classList.remove('active');
+                nav.classList.remove('active');
+            }
+          }
+        });
+      });
+
+      // Адаптация плейсхолдера для телефона (необязательно, если CSS справляется)
+      // window.addEventListener('resize', () => {
+      //   const phoneInputResize = document.getElementById('phone');
+      //   if(phoneInputResize) {
+      //       if(window.innerWidth < 768) {
+      //           phoneInputResize.placeholder = "+7(XXX)XXX-XX-XX";
+      //       } else {
+      //           phoneInputResize.placeholder = "+7 (___) ___-__-__";
+      //       }
+      //   }
+      // });
+      // window.dispatchEvent(new Event('resize')); // Trigger resize on load for placeholder
+    });
+  </script>
 </body>
 </html>
